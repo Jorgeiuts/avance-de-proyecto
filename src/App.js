@@ -4,14 +4,43 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText } from 'reactstrap';
 
+const data = [
+  { id: 1, nombre_pelicula: 'Evil Dead Rise', genero: 'Terror' },
+  { id: 2, nombre_pelicula: 'Mario Bros', genero: 'Animacion' },
+  { id: 3, nombre_pelicula: 'Caballeros del Zodiaco', genero: 'Accion' },
+  { id: 4, nombre_pelicula: 'Rapidos y Furiosos X', genero: 'Accion' },
+  { id: 5, nombre_pelicula: 'Spider-Man', genero: 'Animacion' },
+  { id: 6, nombre_pelicula: 'Guardianes de la Galaxia Vol.3', genero: 'Accion' },
+];
+
 
 class App extends React.Component {
+
+
+  state = {
+    data: data,
+    form: {
+      id: '',
+      nombre_pelicula: '',
+      genero: ''
+    }
+  }
+
+  handleChange = e => {
+    this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      }
+    })
+  }
+
   render() {
     const Example = () => {
       const [isOpen, setIsOpen] = useState(false);
-    
+
       const toggle = () => setIsOpen(!isOpen);
-    
+
       return (
         <div>
           <Navbar expand="md" color="light" light>
@@ -45,39 +74,7 @@ class App extends React.Component {
         </div>
       );
     };
-  
-    return (
-import { Table, Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter } from 'reactstrap';
 
-const data = [
-  { id: 1, nombre_pelicula: 'Evil Dead Rise', genero: 'Terror' },
-  { id: 2, nombre_pelicula: 'Mario Bros', genero: 'Animacion' },
-  { id: 3, nombre_pelicula: 'Caballeros del Zodiaco', genero: 'Accion' },
-  { id: 4, nombre_pelicula: 'Rapidos y Furiosos X', genero: 'Accion' },
-  { id: 5, nombre_pelicula: 'Spider-Man', genero: 'Animacion' },
-  { id: 6, nombre_pelicula: 'Guardianes de la Galaxia Vol.3', genero: 'Accion' },
-];
-
-class App extends React.Component {
-  state = {
-    data: data,
-    form:{
-      id:'',
-      nombre_pelicula: '',
-      genero: ''
-    }
-  }
-
-  handleChange=e=>{
-    this.setState({
-      form:{
-        ...this.state.form,
-        [e.target.name]: e.target.value,
-      }
-    })
-  }
-
-  render() {
     return (
       <>
         <Container>
@@ -123,7 +120,7 @@ class App extends React.Component {
                 className="form-control"
                 readOnly
                 type="text"
-                value={this.state.data.length+1}
+                value={this.state.data.length + 1}
               />
             </FormGroup>
 
